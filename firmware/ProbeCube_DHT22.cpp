@@ -6,10 +6,6 @@ written by Adafruit Industries
 
 #include "ProbeCube_DHT22.h"
 
-#define clockCyclesPerMicrosecond() ( F_CPU / 1000000L )
-#define clockCyclesToMicroseconds(a) ( (a) / clockCyclesPerMicrosecond() )
-#define microsecondsToClockCycles(a) ( (a) * clockCyclesPerMicrosecond() )
-
 #define MIN_INTERVAL 2000
 
 DHT::DHT(uint8_t pin, uint8_t type, uint8_t count) {

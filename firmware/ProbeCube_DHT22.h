@@ -13,8 +13,12 @@ written by Adafruit Industries
  #include "WProgram.h"
 #endif
 */
-#include "application.h"
+
+//#include "application.h"
 #include "math.h"
+
+
+#include "Arduino.h"
 
 // Uncomment to enable printing out nice debug messages.
 //#define DHT_DEBUG
