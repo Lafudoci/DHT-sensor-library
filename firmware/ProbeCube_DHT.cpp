@@ -4,7 +4,7 @@ MIT license
 written by Adafruit Industries
 */
 
-#include "DHT.h"
+#include "ProbeCube_DHT.h"
 
 #define MIN_INTERVAL 2000
 
