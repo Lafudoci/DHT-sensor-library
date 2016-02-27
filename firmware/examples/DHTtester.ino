@@ -1,7 +1,7 @@
 // Example testing sketch for various DHT humidity/temperature sensors
 // Written by ladyada, public domain
 
-#include "ProbeCube_DHT/ProbeCube_DHT.h"
+#include "ProbeCube_DHT22/ProbeCube_DHT22.h"
 
 #define DHTPIN 2     // what digital pin we're connected to
 
