@@ -1,12 +1,17 @@
-//
-// Based on https://gist.github.com/wgbartley/8301123
-// and https://github.com/adafruit/DHT-sensor-library/blob/master/DHT.h
-//
+/* DHT library 
+ *
+ * MIT license
+ * written by Adafruit Industries
+ * modified for Spark Core by RussGrue
+ * */
+
 #ifndef DHT_H
 #define DHT_H
 
 #include "application.h"
+#include "math.h"
 
+// how many timing transitions we need to keep track of. 2 * number bits + extra
 #define MAXTIMINGS 85
 
 #define DHT11 11
@@ -14,29 +19,30 @@
 #define DHT21 21
 #define AM2301 21
 
-#define NAN 999999
-
 class DHT {
-    private:
-        uint8_t _data[6];
-        uint8_t _pin, _type, _count;
-        unsigned long _lastReadTime;
-        bool _firstReading;
+	private:
+		uint8_t data[6];
+		uint8_t _pin, _type, _count;
+		unsigned long _lastreadtime;
+		boolean firstreading;
+		float readTemperature();
+		float convertFtoC(float);
+		float convertCtoF(float);
+		float convertCtoK(float);
+		float computeHeatIndex(float tempFahrenheit, float percentHumidity);
+		float computeDewPoint(float tempCelcius, float percentHumidity);
+		float readHumidity(void);
+		boolean read(void);
 
-        bool read(void);
+	public:
+		DHT(uint8_t pin, uint8_t type, uint8_t count=6);
+		void begin(void);
+		float getHumidity();
+		float getTempCelcius();
+		float getTempFarenheit();
+		float getTempKelvin();
+		float getHeatIndex();
+                float getDewPoint();
 
-    public:
-        DHT(uint8_t pin, uint8_t type, uint8_t count = 6);
-
-        void begin(void);
-
-        float readTemperature(bool farenheit = false);
-        float readHumidity(void);
-
-        float computeHeatIndex(float temperature, float percentHumidity, bool isFahrenheit);
-
-        float convertCtoF(float);
-        float convertFtoC(float f);
 };
-
 #endif
